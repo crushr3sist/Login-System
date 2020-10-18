@@ -1,6 +1,7 @@
 import sqlite3
 from sqlite3 import Error
 import os
+
 def register():
     con = connect()
     try:
@@ -21,13 +22,16 @@ def register():
         print("your account has been created :)")
     except Error as e:
         print(e)
+
 def login():
     try:
-        con = connect()
+
         login_Username = input("enter your username:")
         login_Password = input("enter your password:")
+        con = connect()
         con.execute("SELECT userName, password FROM users")
         cursor = con.cursor()
+
         fetchAuthData = list(cursor.fetchall())
         if login_Password not in fetchAuthData or login_Username not in fetchAuthData:
             for i in range(0,6):
@@ -74,6 +78,20 @@ def createTableFormat():
         print("table is empty")
     conn.commit()
     conn.close()
+
+def confirmTable():
+    conn = connect()
+    Cursor = conn.cursor()
+    Cursor.execute("SELECT COUNT(*) from users")
+    resultFetch = list(Cursor.fetchall())
+    if resultFetch == None or False:
+        print("table is empty, it will be terminated")
+        conn.execute("DROP TABLE users")
+    else:
+        createTableFormat()        
+    conn.commit()
+    conn.close()
+
 def connect():
     Path = os.getcwd()+"\main_DataBase.db"
     try:
@@ -87,14 +105,17 @@ def connect():
     except OSError as errormsg:
         print(errormsg+"\n"+"The file couldn't be created, please relocate the python file to the desktop")
     except Error as e:
-        print(e)        
+        print(e)
+    except sqlite3.OperationalError as alreadyExists:
+        confirmTable()
+
     return con
 
 def main():
     try:
         connectionChoice = input("would you like to login or register\n:")
         if connectionChoice == "login":
-            createTableFormat()
+            confirmTable()
             login()
         if connectionChoice == "register":
             register()
