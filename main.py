@@ -1,8 +1,8 @@
 import sqlite3
 from sqlite3 import Error
 import os
-
-from api import *
+from database import *
+#from Interface import guiDev
 
 def main():
     try:
@@ -15,4 +15,4 @@ def main():
         print(e)
         pass
 
-main()
+
