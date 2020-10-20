@@ -1,6 +1,6 @@
 class sign_up:
     def __init__(self):
-        self.con = connect()
+        self.con = establish()
         self.userID = 0
         self.userID = userID + 1
         self.firstName = str(input("enter your first name:"))

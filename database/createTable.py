@@ -1,6 +1,7 @@
+from connecttodatabase import *
 class create_table:
     def __init__(self):
-        self.conn = connect()
+        self.conn = self.establish()
         self.Cursor = conn.cursor()
         self.resultFetch = list(Cursor.fetchall())
     def createTableFormat():
@@ -16,7 +17,7 @@ class create_table:
                 employeeID int,
                 shiftStatus boolean,
                 Age int,
-                Wage int,
+                Wage money,
                 position varchar(255)
             )
             ''')
