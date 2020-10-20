@@ -5,12 +5,9 @@ import os
 from api import *
 
 def main():
-
     try:
-
         connectionChoice = input("would you like to login or register\n:")
         if connectionChoice == "login":
-            createTableFormat()
             login()
         if connectionChoice == "register":
             register()
@@ -18,4 +15,4 @@ def main():
         print(e)
         pass
 
-
+main()

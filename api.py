@@ -1,3 +1,7 @@
+import sqlite3
+from sqlite3 import Error
+import os
+
 def register():
     con = connect()
     try:
@@ -50,7 +54,7 @@ def createTableFormat():
     # this is a query which creates a table, this specific query sets up the table's format
     conn.execute('''
         CREATE TABLE users (
-            uniqueID int,
+            userID int,
             firstName varchar(255),
             lastName varchar(255),
             email varchar(255),
