@@ -92,3 +92,11 @@ def connect():
     except Error as e:
         print(e)        
     return con
+
+def checkIfEmpty():
+    Path = os.getcwd()+"\main_DataBase.db"
+    if os.path.exists(Path) == True:
+        return True
+    else:
+        return False
+        pass
