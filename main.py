@@ -1,7 +1,7 @@
 import sqlite3
 from sqlite3 import Error
 import os
-from DATABASE import *
+from DATABASE import 
 
 connect_req = connecttodatabase.connectDB()
 
