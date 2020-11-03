@@ -81,7 +81,7 @@ def createTableFormat():
 
         
 def connect():
-    Path = os.getcwd()+"DATABASE\main_DataBase.db"
+    Path = os.getcwd()+"\main_DataBase.db"
     try:
         if Path != os.path.islink(Path):
             con = sqlite3.connect(Path)
