@@ -15,8 +15,6 @@ login_page_message = makeLabel("please type your username and password, make sur
 login_page_userName_message = makeLabel("type your username below",36,100,250,message_color,'Segoe UI')
 login_page_password_message = makeLabel("type your password below",36,100,450,message_color,'Segoe UI')
 
-
-
 def login_page():
 
     hideAll()
