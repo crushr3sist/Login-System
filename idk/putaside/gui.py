@@ -2,19 +2,37 @@ from pygame_functions import *
 from sqlite3 import Error
 from api import connect
 
-window_x = 1280;window_y = 720
+window_x = 1280
+window_y = 720
 
-screenSize(window_x,window_y)
+screenSize(window_x, window_y)
 
 background = (126, 164, 179)
-message_color = ((126-80), (164-80), (179-80))
+message_color = ((126 - 80), (164 - 80), (179 - 80))
 login_button = makeSprite("buttons/login.png")
 register_button = makeSprite("buttons/register.png")
-main_page_message = makeLabel("Would you like to Login or Register Please click the corresponding Button",36,100,100,message_color,'Segoe UI')
-login_page_message = makeLabel("please type your username and password, make sure you are a administrator",36,100,100,message_color,'Segoe UI')
-login_page_userName_message = makeLabel("type your username below",36,100,250,message_color,'Segoe UI')
-login_page_password_message = makeLabel("type your password below",36,100,450,message_color,'Segoe UI')
-
+main_page_message = makeLabel(
+    "Would you like to Login or Register Please click the corresponding Button",
+    36,
+    100,
+    100,
+    message_color,
+    "Segoe UI",
+)
+login_page_message = makeLabel(
+    "please type your username and password, make sure you are a administrator",
+    36,
+    100,
+    100,
+    message_color,
+    "Segoe UI",
+)
+login_page_userName_message = makeLabel(
+    "type your username below", 36, 100, 250, message_color, "Segoe UI"
+)
+login_page_password_message = makeLabel(
+    "type your password below", 36, 100, 450, message_color, "Segoe UI"
+)
 
 
 def login_page():
@@ -31,13 +49,16 @@ def login_page():
         con = connect()
         showLabel(login_page_userName_message)
         showLabel(login_page_password_message)
-        login_Username_textbox = makeTextBox(100,350,500,0,'enter your username:',99,25)
-        login_Password_textbox = makeTextBox(100,550,500,0,'enter your password:',99,25)
-
+        login_Username_textbox = makeTextBox(
+            100, 350, 500, 0, "enter your username:", 99, 25
+        )
+        login_Password_textbox = makeTextBox(
+            100, 550, 500, 0, "enter your password:", 99, 25
+        )
 
         login_Username = textBoxInput(login_Username_textbox)
         login_Password = textBoxInput(login_Password_textbox)
-        
+
         con.execute("SELECT userName, password FROM Users,Admin ")
         cursor = con.cursor()
         fetchAuthData = list(cursor.fetchall())
@@ -45,7 +66,7 @@ def login_page():
         print(fetchAuthData)
 
         if login_Password not in fetchAuthData or login_Username not in fetchAuthData:
-            for i in range(0,6):
+            for i in range(0, 6):
                 print("please try again")
                 login_Username = input("enter your username:")
                 login_Password = input("enter your password:")
@@ -58,9 +79,10 @@ def login_page():
                         print("please try again later")
                         break
         if login_Password in fetchAuthData and login_Username in fetchAuthData:
-            print("Login Sucessful")            
+            print("Login Sucessful")
     except Error as e:
         print(e)
+
 
 # def register_page():
 
