@@ -8,12 +8,21 @@ class sign_up:
         self.emailAdd = str(input(r"enter your email address:"))
         self.userName = str(input("enter your desired username:"))
         self.password = str(input("enter your desired password:"))
+
     def register(self):
         try:
-            self.con.execute('''
+            self.con.execute(
+                """
             INSERT INTO users (userID,firstName,lastName,email,userName,password)
-            VALUES (?,?,?,?,?,?)''',
-            (self.userID, self.firstName, self.lastName, self.emailAdd,self.userName,self.password)
+            VALUES (?,?,?,?,?,?)""",
+                (
+                    self.userID,
+                    self.firstName,
+                    self.lastName,
+                    self.emailAdd,
+                    self.userName,
+                    self.password,
+                ),
             )
             self.con.commit()
             self.con.close()
